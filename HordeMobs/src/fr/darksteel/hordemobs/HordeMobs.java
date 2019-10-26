@@ -162,11 +162,24 @@ public class HordeMobs extends JavaPlugin {
 		        
 		        lucifer.getLocation().getChunk().setForceLoaded(true);		        
 		        lucifer.getLocation().getChunk().load();
-				
+		        
+		        tsuchigumo.getLocation().getChunk().setForceLoaded(true);		        
+		        tsuchigumo.getLocation().getChunk().load();
+		        
+		        neith.getLocation().getChunk().setForceLoaded(true);		        
+		        neith.getLocation().getChunk().load();
+		        
+		        asterios.getLocation().getChunk().setForceLoaded(true);		        
+		        asterios.getLocation().getChunk().load();
+		        
+		        seliph.getLocation().getChunk().setForceLoaded(true);		        
+		        seliph.getLocation().getChunk().load();
 			}
 			
+			
+			
 		},216000, 216000);
-		
+				
         getCommand("hordemobs").setExecutor(new CommandExecutor() {
 			
 			@Override
@@ -185,7 +198,7 @@ public class HordeMobs extends JavaPlugin {
 							p.sendMessage("§e=====================§4Help§e=====================");
 							
 						}
-						// /hm help ou /hm spawn ou /hm killall ou /hm lucifer ou /hm tsuchigumo ou /hm neith
+						// /hm help ou /hm spawn ou /hm killall ou /hm <name>
 						if(arg3.length == 1) {
 							
 							if(arg3[0].equalsIgnoreCase("help")) {
