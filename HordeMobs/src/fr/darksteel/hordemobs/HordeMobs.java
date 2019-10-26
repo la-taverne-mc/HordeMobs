@@ -239,7 +239,23 @@ public class HordeMobs extends JavaPlugin {
 								
 								lucifer.remove();
 								lucifer.getLocation().getChunk().setForceLoaded(false);
-								Bukkit.broadcastMessage("§4Lucifer §eest parti chez lui");
+								Bukkit.broadcastMessage("§4Lucifer §eest reparti en enfer!");
+								
+								tsuchigumo.remove();
+								tsuchigumo.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Tsuchigumo §eest reparti dans son trou!");
+								
+								seliph.remove();
+								seliph.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Seliph §eest reparti dans son royaume!");
+								
+								neith.remove();
+								neith.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Neith §eest repartie dans sa pyramine!");
+								
+								asterios.remove();
+								asterios.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Asterios §eest reparti dans son labyrinthe!");
 								
 								
 								
@@ -269,6 +285,8 @@ public class HordeMobs extends JavaPlugin {
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
 						        
 						        Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu en x: "+ o +" y:"+ l +" z:"+ m);
+						        tsuchigumo.getLocation().getChunk().setForceLoaded(true);		        
+						        tsuchigumo.getLocation().getChunk().load();
 								
 							}
 							
@@ -280,7 +298,7 @@ public class HordeMobs extends JavaPlugin {
 								double d = -30000 + a.nextInt(60000);
 								
 								
-								Pillager neith = (Pillager)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), q, f, d), EntityType.PILLAGER);
+								 neith = (Pillager)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), q, f, d), EntityType.PILLAGER);
 								 neith.setCustomName("§4Neith");
 								 neith.setCustomNameVisible(true);
 								 neith.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
@@ -298,7 +316,9 @@ public class HordeMobs extends JavaPlugin {
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
 						        
 						        Bukkit.broadcastMessage("§4Neith §eest apparu en x: "+ q +" y:"+ f +" z:"+ d);
-								
+						        neith.getLocation().getChunk().setForceLoaded(true);		        
+						        neith.getLocation().getChunk().load();
+						        
 							}
 							
 							if(arg3[0].equalsIgnoreCase("seliph")) {
@@ -309,7 +329,7 @@ public class HordeMobs extends JavaPlugin {
 								double i = -30000 + h.nextInt(60000);
 								
 								
-								Vindicator seliph = (Vindicator)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), k, j, i), EntityType.VINDICATOR);
+								 seliph = (Vindicator)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), k, j, i), EntityType.VINDICATOR);
 						         seliph.setCustomName("§4Seliph");
 						         seliph.setCustomNameVisible(true);
 						         seliph.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
@@ -325,6 +345,8 @@ public class HordeMobs extends JavaPlugin {
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
 						        
 						        Bukkit.broadcastMessage("§4Seliph §eest apparu en x: "+ k +" y:"+ j +" z:"+ i);
+						        seliph.getLocation().getChunk().setForceLoaded(true);		        
+						        seliph.getLocation().getChunk().load();
 								
 							}
 							
@@ -351,6 +373,8 @@ public class HordeMobs extends JavaPlugin {
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
 						        
 						        Bukkit.broadcastMessage("§4Asterios §eest apparu en x: "+ w +" y:"+ c +" z:"+ n);
+						        asterios.getLocation().getChunk().setForceLoaded(true);		        
+						        asterios.getLocation().getChunk().load();
 								
 							}
 							
@@ -382,7 +406,7 @@ public class HordeMobs extends JavaPlugin {
 								double c = 90 + b.nextInt(10);
 								double n = -30000 + b.nextInt(60000);
 								
-								Ravager asterios = (Ravager)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), w, c, n), EntityType.RAVAGER);
+								 asterios = (Ravager)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), w, c, n), EntityType.RAVAGER);
 								 asterios.setCustomName("§4Asterios");
 								 asterios.setCustomNameVisible(true);
 								 asterios.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
@@ -405,7 +429,7 @@ public class HordeMobs extends JavaPlugin {
 								double i = -30000 + h.nextInt(60000);
 								
 								
-								Vindicator seliph = (Vindicator)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), k, j, i), EntityType.VINDICATOR);
+								 seliph = (Vindicator)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), k, j, i), EntityType.VINDICATOR);
 						         seliph.setCustomName("§4Seliph");
 						         seliph.setCustomNameVisible(true);
 						         seliph.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
@@ -428,7 +452,7 @@ public class HordeMobs extends JavaPlugin {
 								double d = -30000 + a.nextInt(60000);
 								
 								
-								Pillager neith = (Pillager)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), q, f, d), EntityType.PILLAGER);
+								 neith = (Pillager)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), q, f, d), EntityType.PILLAGER);
 								 neith.setCustomName("§4Neith");
 								 neith.setCustomNameVisible(true);
 								 neith.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
@@ -453,7 +477,7 @@ public class HordeMobs extends JavaPlugin {
 							    double m = -30000 + r.nextInt(60000);
 								 	
 								 	
-							    Spider tsuchigumo = (Spider)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), o, l, m), EntityType.SPIDER);
+							     tsuchigumo = (Spider)Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), o, l, m), EntityType.SPIDER);
 							     tsuchigumo.setCustomName("§4Tsuchigumo");
 							     tsuchigumo.setCustomNameVisible(true);
 							     tsuchigumo.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
