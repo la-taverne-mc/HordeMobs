@@ -270,7 +270,7 @@ public class HordeMobs extends JavaPlugin {
 							     tsuchigumo.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));		
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 10));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 999999, 4));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
@@ -332,7 +332,7 @@ public class HordeMobs extends JavaPlugin {
 						         seliph.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 5));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
@@ -361,7 +361,7 @@ public class HordeMobs extends JavaPlugin {
 								 asterios.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 12));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 5));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
@@ -393,7 +393,8 @@ public class HordeMobs extends JavaPlugin {
 								 lucifer.getEquipment().setItemInOffHand(new ItemStack(Material.SHIELD, 1));
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 8));
+								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 3));
+								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
 								 lucifer.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Lucifer §eest apparu en x: "+ x +" y:"+ y +" z:"+ z);
@@ -412,7 +413,7 @@ public class HordeMobs extends JavaPlugin {
 								 asterios.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 12));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 5));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
@@ -436,7 +437,7 @@ public class HordeMobs extends JavaPlugin {
 						         seliph.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 5));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
@@ -462,7 +463,7 @@ public class HordeMobs extends JavaPlugin {
 								 neith.getEquipment().setItemInOffHand(new ItemStack(Material.SHIELD, 1));
 								 neith.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 								 neith.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-								 neith.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 9));
+								 neith.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 2));
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
@@ -486,14 +487,12 @@ public class HordeMobs extends JavaPlugin {
 							     tsuchigumo.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));		
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
-							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 10));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 999999, 4));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
 							     tsuchigumo.setHealth(500);
-							        
-						        Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu en x: "+ o +" y:"+ l +" z:"+ m);
 						        
 							}
 							
