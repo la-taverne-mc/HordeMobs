@@ -209,18 +209,16 @@ public class HordeMobs extends JavaPlugin {
 							if(arg3[0].equalsIgnoreCase("help")) {
 								p.sendMessage("§e=====================§4Help 1/2§e=====================");
 								p.sendMessage("§3/hordemobs help : §8show all commands");
-								p.sendMessage("§3/hordemobs spawn : §8summon a hord of custome mob randomly in the world");
+								p.sendMessage("§3/hordemobs spawnall : §8summon a hord of custome mob randomly in the world");
 								p.sendMessage("§3/hordemobs killall : §8kill all of custome mob");
-								p.sendMessage("§3/hordemobs lucifer : §8summon Lucifer");
-								p.sendMessage("§3/hordemobs tsuchigumo : §8summon Tsuchigumo");
-								p.sendMessage("§3/hordemobs neith : §8summon Neith");
+								p.sendMessage("§3/hordemobs <mob> : §8summon the mob randomly");
 								p.sendMessage("§e=====================§4Help 1/2§e=====================");
 							}
 							
 							if(arg3[0].equalsIgnoreCase("help2")) {
 								p.sendMessage("§e=====================§4Help 2/2§e=====================");
-								p.sendMessage("§3/hordemobs seliph : §8summon Seliph");
-								p.sendMessage("§3/hordemobs asterios : §8summon Asterios");
+								p.sendMessage("§3/hordemobs list : §8display the list of mobs");
+								p.sendMessage("§3/hordemobs s-<mob> : §8summon a specific mob");
 								p.sendMessage("§e=====================§4Help 2/2§e=====================");
 							}
 							
@@ -374,7 +372,7 @@ public class HordeMobs extends JavaPlugin {
 								
 							}
 							
-							if(arg3[0].equalsIgnoreCase("spawn")) {
+							if(arg3[0].equalsIgnoreCase("spawnall")) {
 								
 								Random g = new Random();
 								double x = -30000 + g.nextInt(60000);
@@ -523,6 +521,115 @@ public class HordeMobs extends JavaPlugin {
 								
 							}
                             
+                            if(arg3[0].equalsIgnoreCase("list")) {
+                            	
+                            	p.sendMessage("lucifer");
+                            	p.sendMessage("tsuchigumo");
+                            	p.sendMessage("neith");
+                            	p.sendMessage("asterios");
+                            	p.sendMessage("seliph");
+                            	
+                            }
+                            
+                            if(arg3[0].equalsIgnoreCase("s-lucifer")) {
+                            	
+                            	 lucifer = (Skeleton)p.getWorld().spawnEntity(p.getLocation(), EntityType.SKELETON);
+								 lucifer.setCustomName("§4Lucifer");
+								 lucifer.setCustomNameVisible(true);
+								 lucifer.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
+								 lucifer.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+								 lucifer.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+								 lucifer.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));		
+								 lucifer.getEquipment().setItemInMainHand(new ItemStack(Material.DIAMOND_SWORD, 1));
+								 lucifer.getEquipment().setItemInOffHand(new ItemStack(Material.SHIELD, 1));
+								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
+								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
+								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 3));
+								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+								 lucifer.setHealth(500);
+                            	
+                            }
+                            
+                            if(arg3[0].equalsIgnoreCase("s-tsuchimugo")) {
+                            	
+                            	 tsuchigumo = (Spider)p.getWorld().spawnEntity(p.getLocation(), EntityType.SPIDER);
+							     tsuchigumo.setCustomName("§4Tsuchigumo");
+							     tsuchigumo.setCustomNameVisible(true);
+							     tsuchigumo.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
+							     tsuchigumo.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+							     tsuchigumo.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+							     tsuchigumo.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));		
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 999999, 4));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
+							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+							     tsuchigumo.setHealth(500);
+                            	
+                            }
+                            
+                            if(arg3[0].equalsIgnoreCase("s-neith")) {
+                            	
+                            	neith = (Pillager)p.getWorld().spawnEntity(p.getLocation(), EntityType.PILLAGER);
+								 neith.setCustomName("§4Neith");
+								 neith.setCustomNameVisible(true);
+								 neith.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
+								 neith.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+								 neith.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+								 neith.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
+								 neith.getEquipment().setItemInMainHand(new ItemStack(Material.CROSSBOW, 1));
+								 neith.getEquipment().setItemInOffHand(new ItemStack(Material.SHIELD, 1));
+								 neith.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
+								 neith.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
+								 neith.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 2));
+						         neith.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
+						         neith.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
+						         neith.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
+						         neith.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+						         neith.setHealth(500);
+                            	
+                            }
+                            
+                            if(arg3[0].equalsIgnoreCase("s-asterios")) {
+                            	
+                            	asterios = (Ravager)p.getWorld().spawnEntity(p.getLocation(), EntityType.RAVAGER);
+								 asterios.setCustomName("§4Asterios");
+								 asterios.setCustomNameVisible(true);
+								 asterios.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
+								 asterios.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+								 asterios.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+								 asterios.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 5));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
+								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+								 asterios.setHealth(500);
+                            	
+                            }
+                            if(arg3[0].equalsIgnoreCase("s-seliph")) {
+                            	
+                            	seliph = (Vindicator)p.getWorld().spawnEntity(p.getLocation(), EntityType.VINDICATOR);
+						         seliph.setCustomName("§4Seliph");
+						         seliph.setCustomNameVisible(true);
+						         seliph.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET, 1));
+						         seliph.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+						         seliph.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+						         seliph.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 3));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
+						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+						         seliph.setHealth(500);
+                            	
+                            }
 						}
 						
 					}
