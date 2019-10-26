@@ -64,6 +64,7 @@ public class HordeMobs extends JavaPlugin {
 				 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
 				 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 3));
 				 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+				 lucifer.setHealth(500);
 		        
 		        Bukkit.broadcastMessage("§4Lucifer §eest apparu en x: "+ x +" y:"+ y +" z:"+ z);
 		        
@@ -86,6 +87,7 @@ public class HordeMobs extends JavaPlugin {
 				 asterios.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 				 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 				 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+				 asterios.setHealth(500);
 		        
 		        Bukkit.broadcastMessage("§4Asterios §eest apparu en x: "+ w +" y:"+ c +" z:"+ n);
 		        
@@ -109,6 +111,7 @@ public class HordeMobs extends JavaPlugin {
 		         seliph.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 		         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 		         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+		         seliph.setHealth(500);
 		        
 		        Bukkit.broadcastMessage("§4Seliph §eest apparu en x: "+ k +" y:"+ j +" z:"+ i);
 		        
@@ -134,6 +137,7 @@ public class HordeMobs extends JavaPlugin {
 		         neith.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 		         neith.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 		         neith.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+		         neith.setHealth(500);
 		         
 		        Bukkit.broadcastMessage("§4Neith §eest apparu en x: "+ q +" y:"+ f +" z:"+ d);
 		         
@@ -157,6 +161,7 @@ public class HordeMobs extends JavaPlugin {
 			     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 			     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 			     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+			     tsuchigumo.setHealth(500);
 			        
 		        Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu en x: "+ o +" y:"+ l +" z:"+ m);
 		        
@@ -240,38 +245,12 @@ public class HordeMobs extends JavaPlugin {
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 3));
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+								 lucifer.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Lucifer §eest apparu en x: "+ x +" y:"+ y +" z:"+ z);
 						        lucifer.getLocation().getChunk().setForceLoaded(true);		        
 						        lucifer.getLocation().getChunk().load();
 						         
-							}
-							
-							if(arg3[0].equalsIgnoreCase("killall")) {
-								
-								
-								lucifer.remove();
-								lucifer.getLocation().getChunk().setForceLoaded(false);
-								Bukkit.broadcastMessage("§4Lucifer §eest reparti en enfer!");
-								
-								tsuchigumo.remove();
-								tsuchigumo.getLocation().getChunk().setForceLoaded(false);
-								Bukkit.broadcastMessage("§4Tsuchigumo §eest reparti dans son trou!");
-								
-								seliph.remove();
-								seliph.getLocation().getChunk().setForceLoaded(false);
-								Bukkit.broadcastMessage("§4Seliph §eest reparti dans son royaume!");
-								
-								neith.remove();
-								neith.getLocation().getChunk().setForceLoaded(false);
-								Bukkit.broadcastMessage("§4Neith §eest repartie dans sa pyramine!");
-								
-								asterios.remove();
-								asterios.getLocation().getChunk().setForceLoaded(false);
-								Bukkit.broadcastMessage("§4Asterios §eest reparti dans son labyrinthe!");
-								
-								
-								
 							}
 							
 							if(arg3[0].equalsIgnoreCase("tsuchigumo")) {
@@ -296,6 +275,7 @@ public class HordeMobs extends JavaPlugin {
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+							     tsuchigumo.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu en x: "+ o +" y:"+ l +" z:"+ m);
 						        tsuchigumo.getLocation().getChunk().setForceLoaded(true);		        
@@ -327,6 +307,7 @@ public class HordeMobs extends JavaPlugin {
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+						         neith.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Neith §eest apparu en x: "+ q +" y:"+ f +" z:"+ d);
 						        neith.getLocation().getChunk().setForceLoaded(true);		        
@@ -356,6 +337,7 @@ public class HordeMobs extends JavaPlugin {
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+						         seliph.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Seliph §eest apparu en x: "+ k +" y:"+ j +" z:"+ i);
 						        seliph.getLocation().getChunk().setForceLoaded(true);		        
@@ -384,6 +366,7 @@ public class HordeMobs extends JavaPlugin {
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+								 asterios.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Asterios §eest apparu en x: "+ w +" y:"+ c +" z:"+ n);
 						        asterios.getLocation().getChunk().setForceLoaded(true);		        
@@ -411,6 +394,7 @@ public class HordeMobs extends JavaPlugin {
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 999999, 10));
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 3));
 								 lucifer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 8));
+								 lucifer.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Lucifer §eest apparu en x: "+ x +" y:"+ y +" z:"+ z);
 						        
@@ -433,6 +417,7 @@ public class HordeMobs extends JavaPlugin {
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 								 asterios.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+								 asterios.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Asterios §eest apparu en x: "+ w +" y:"+ c +" z:"+ n);
 						        
@@ -456,6 +441,7 @@ public class HordeMobs extends JavaPlugin {
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 						         seliph.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+						         seliph.setHealth(500);
 						        
 						        Bukkit.broadcastMessage("§4Seliph §eest apparu en x: "+ k +" y:"+ j +" z:"+ i);
 						        
@@ -481,6 +467,7 @@ public class HordeMobs extends JavaPlugin {
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 						         neith.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+						         neith.setHealth(500);
 						         
 						        Bukkit.broadcastMessage("§4Neith §eest apparu en x: "+ q +" y:"+ f +" z:"+ d);
 						         
@@ -504,22 +491,48 @@ public class HordeMobs extends JavaPlugin {
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, 999999, 9));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 999999, 9));
 							     tsuchigumo.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 20));
+							     tsuchigumo.setHealth(500);
 							        
 						        Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu en x: "+ o +" y:"+ l +" z:"+ m);
-								
-							        
-							        
-						         
+						        
 							}
+							
+                            if(arg3[0].equalsIgnoreCase("killall")) {
+								
+								
+								lucifer.remove();
+								lucifer.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Lucifer §eest reparti en enfer!");
+								
+								tsuchigumo.remove();
+								tsuchigumo.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Tsuchigumo §eest reparti dans son trou!");
+								
+								seliph.remove();
+								seliph.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Seliph §eest reparti dans son royaume!");
+								
+								neith.remove();
+								neith.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Neith §eest repartie dans sa pyramine!");
+								
+								asterios.remove();
+								asterios.getLocation().getChunk().setForceLoaded(false);
+								Bukkit.broadcastMessage("§4Asterios §eest reparti dans son labyrinthe!");
+								
+								
+								
+							}
+                            
 						}
 						
-					
-					
 					}
+					
 				}
 				return false;
 				
 			}
+			
 		});
 
 	    }
