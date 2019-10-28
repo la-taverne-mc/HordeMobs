@@ -3,7 +3,7 @@ api-version: "1.14"
 name: HordeMobs
 version: "1.0"
 author: Dark_Steel PoC4
-main: fr.neolithic.hordemobs.Main
+main: fr.neolithic.hordemobstests.Main
 commands:
   hordemobs:
     description: summons a custom mob in the world
