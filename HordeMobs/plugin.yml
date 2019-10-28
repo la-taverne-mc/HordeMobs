@@ -1,9 +1,0 @@
-name: HordeMobs
-version: 1.0
-author: Dark_Steel
-main: fr.darksteel.hordemobs.HordeMobs
-commands:
-  hordemobs:
-    description: summon a mob custom in the world
-    aliases: [hm]
-    default: op
