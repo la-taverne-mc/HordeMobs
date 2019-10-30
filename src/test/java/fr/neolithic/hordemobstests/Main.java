@@ -6,8 +6,9 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         MobHandler mobHandler = new MobHandler();
-        Commands commandExecutor = new Commands(mobHandler);
-        getCommand("hordemobs").setExecutor(commandExecutor);
+        getCommand("hordemobs").setExecutor(new Commands(mobHandler));
+
+        getServer().getPluginManager().registerEvents(new ChunkEventListener(mobHandler), this);
         
         System.out.println("HordeMobs has been successfully enabled");
     }

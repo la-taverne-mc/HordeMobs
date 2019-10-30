@@ -15,23 +15,26 @@ import org.bukkit.entity.Player;
 public class Commands implements TabExecutor {
     private MobHandler mobHandler;
 
-    private List<String> mobsList = Lists.newArrayList();
-    private List<String> argumentsList = Lists.newArrayList();
+    private List<String> mobsList;
+    private List<String> argumentsList;
 
     public Commands(MobHandler mobHandler) {
         this.mobHandler = mobHandler;
 
+        mobsList = Lists.newArrayList();
         mobsList.add("asterios");
         mobsList.add("lucifer");
         mobsList.add("neith");
         mobsList.add("seliph");
         mobsList.add("tsuchigumo");
 
+        argumentsList = Lists.newArrayList();
         argumentsList.add("help");
         argumentsList.add("killall");
         argumentsList.add("list");
         argumentsList.add("spawn");
         argumentsList.add("spawnhere");
+        argumentsList.add("test");
     }
 
     @Override
@@ -40,6 +43,10 @@ public class Commands implements TabExecutor {
             Player player = (Player) sender;
             if (args.length == 1) {
                 switch (args[0].toLowerCase()) {
+                    case "test":
+                        player.sendMessage(mobHandler.mobsToSpawn.toString());
+                        return true;
+
                     case "help":
                         showHelp(player);
                         return true;
@@ -60,6 +67,10 @@ public class Commands implements TabExecutor {
                             killCount++;
                         }
                         mobHandler.mobs.clear();
+                        for (int i = 0; i < mobHandler.mobsToSpawn.size(); i++) {
+                            killCount++;
+                        }
+                        mobHandler.mobsToSpawn.clear();
                         player.sendMessage("§9" + String.valueOf(killCount) + " §3mobs where killed");
                         return true;
                     
