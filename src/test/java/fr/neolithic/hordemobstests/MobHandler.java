@@ -41,6 +41,14 @@ public class MobHandler {
         return keysMatching;
     }
 
+    public boolean spawnMob(String mob, World world) {
+        int worldSize = Double.valueOf(world.getWorldBorder().getSize()).intValue();
+        int x = r.nextInt(worldSize) - worldSize / 2 + world.getWorldBorder().getCenter().getBlockX();
+        int z = r.nextInt(worldSize) - worldSize / 2 + world.getWorldBorder().getCenter().getBlockZ();
+
+        return spawnMob(mob, world, x, z);
+    }
+
     public boolean spawnMob(String mob, World world, int x, int z) {
         return spawnMob(mob, world, world.getHighestBlockAt(x, z).getLocation());
     }
@@ -98,7 +106,7 @@ public class MobHandler {
         ));
         lucifer.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
         lucifer.setHealth(500);
-        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "data merge entity " + lucifer.getUniqueId().toString() + " {PersistenceRequired:1b}");
+        lucifer.setRemoveWhenFarAway(false);
 
         mobs.put("lucifer-" + getKeysMatching(pLucifer).toString(), lucifer);
 
@@ -118,7 +126,7 @@ public class MobHandler {
         ));
         asterios.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
         asterios.setHealth(500);
-        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "data merge entity " + asterios.getUniqueId().toString() + " {PersistenceRequired:1b}");
+        asterios.setRemoveWhenFarAway(false);
 
         mobs.put("asterios-" + getKeysMatching(pAsterios).toString(), asterios);
 
@@ -149,7 +157,7 @@ public class MobHandler {
         ));
         seliph.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
         seliph.setHealth(500);
-        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "data merge entity " + seliph.getUniqueId().toString() + " {PersistenceRequired:1b}");
+        seliph.setRemoveWhenFarAway(false);
 
         mobs.put("seliph-" + getKeysMatching(pSeliph).toString(), seliph);
 
@@ -158,7 +166,7 @@ public class MobHandler {
 
     private void spawnNeith(World world, Location loc) {
         Pillager neith = (Pillager) world.spawnEntity(loc, EntityType.PILLAGER);
-        neith.setCustomName("§4Lucifer");
+        neith.setCustomName("§4Neith");
         neith.setCustomNameVisible(true);
         ItemStack[] armor = {
             new ItemStack(Material.DIAMOND_BOOTS),
@@ -177,7 +185,7 @@ public class MobHandler {
         neith.getEquipment().setItemInOffHandDropChance(0);
         neith.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
         neith.setHealth(500);
-        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "data merge entity " + neith.getUniqueId().toString() + " {PersistenceRequired:1b}");
+        neith.setRemoveWhenFarAway(false);
 
         mobs.put("neith-" + getKeysMatching(pNeith).toString(), neith);
 
@@ -199,7 +207,7 @@ public class MobHandler {
         ));
         tsuchigumo.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
         tsuchigumo.setHealth(500);
-        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "data merge entity " + tsuchigumo.getUniqueId().toString() + " {PersistenceRequired:1b}");
+        tsuchigumo.setRemoveWhenFarAway(false);
 
         mobs.put("tsuchigumo-" + getKeysMatching(pTsuchigumo).toString(), tsuchigumo);
 
