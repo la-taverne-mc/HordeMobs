@@ -41,11 +41,38 @@ public class MobHandler {
         return keysMatching;
     }
 
-    public void spawnLucifer(World world, int x, int z) {
-        spawnLucifer(world, world.getHighestBlockAt(x, z).getLocation());
+    public boolean spawnMob(String mob, World world, int x, int z) {
+        return spawnMob(mob, world, world.getHighestBlockAt(x, z).getLocation());
     }
 
-    public void spawnLucifer(World world, Location loc) {
+    public boolean spawnMob(String mob, World world, Location loc) {
+        switch (mob) {
+            case "asterios":
+                spawnAsterios(world, loc);
+                return true;
+
+            case "lucifer":
+                spawnLucifer(world, loc);
+                return true;
+            
+            case "neith":
+                spawnNeith(world, loc);
+                return true;
+            
+            case "seliph":
+                spawnSeliph(world, loc);
+                return true;
+            
+            case "tsuchigumo":
+                spawnTsuchigumo(world, loc);
+                return true;
+            
+            default:
+                return false;
+        }
+    }
+
+    private void spawnLucifer(World world, Location loc) {
         Skeleton lucifer = (Skeleton) world.spawnEntity(loc, EntityType.SKELETON);
         lucifer.setCustomName("§4Lucifer");
         lucifer.setCustomNameVisible(true);
@@ -78,11 +105,7 @@ public class MobHandler {
         Bukkit.broadcastMessage("§4Lucifer §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
     }
 
-    public void spawnAsterios(World world, int x, int z) {
-        spawnAsterios(world, world.getHighestBlockAt(x, z).getLocation());
-    }
-
-    public void spawnAsterios(World world, Location loc) {
+    private void spawnAsterios(World world, Location loc) {
         Ravager asterios = (Ravager) world.spawnEntity(loc, EntityType.RAVAGER);
         asterios.setCustomName("§4Asterios");
         asterios.setCustomNameVisible(true);
@@ -102,11 +125,7 @@ public class MobHandler {
         Bukkit.broadcastMessage("§4Asterios §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
     }
 
-    public void spawnSeliph(World world, int x, int z) {
-        spawnSeliph(world, world.getHighestBlockAt(x, z).getLocation());
-    }
-
-    public void spawnSeliph(World world, Location loc) {
+    private void spawnSeliph(World world, Location loc) {
         Vindicator seliph = (Vindicator) world.spawnEntity(loc, EntityType.VINDICATOR);
         seliph.setCustomName("§4Seliph");
         seliph.setCustomNameVisible(true);
@@ -137,11 +156,7 @@ public class MobHandler {
         Bukkit.broadcastMessage("§4Seliph §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
     }
 
-    public void spawnNeith(World world, int x, int z) {
-        spawnNeith(world, world.getHighestBlockAt(x, z).getLocation());
-    }
-
-    public void spawnNeith(World world, Location loc) {
+    private void spawnNeith(World world, Location loc) {
         Pillager neith = (Pillager) world.spawnEntity(loc, EntityType.PILLAGER);
         neith.setCustomName("§4Lucifer");
         neith.setCustomNameVisible(true);
@@ -169,11 +184,7 @@ public class MobHandler {
         Bukkit.broadcastMessage("§4Neith §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
     }
 
-    public void spawnTsuchigumo(World world, int x, int z) {
-        spawnTsuchigumo(world, world.getHighestBlockAt(x, z).getLocation());
-    }
-
-    public void spawnTsuchigumo(World world, Location loc) {
+    private void spawnTsuchigumo(World world, Location loc) {
         Spider tsuchigumo = (Spider) world.spawnEntity(loc, EntityType.SPIDER);
         tsuchigumo.setCustomName("§4Tsuchigumo");
         tsuchigumo.setCustomNameVisible(true);
