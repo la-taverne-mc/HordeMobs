@@ -62,38 +62,53 @@ public class MobHandler {
         return keysMatching;
     }
 
-    public boolean spawnMob(String mob, World world) {
+    public boolean spawnMob(String mob, World world, boolean showMessage) {
         int worldSize = Double.valueOf(world.getWorldBorder().getSize()).intValue();
         int x = r.nextInt(worldSize) - worldSize / 2 + world.getWorldBorder().getCenter().getBlockX();
         int z = r.nextInt(worldSize) - worldSize / 2 + world.getWorldBorder().getCenter().getBlockZ();
 
-        return spawnMob(mob, world, x, z);
+        return spawnMob(mob, world, x, z, showMessage);
     }
 
-    public boolean spawnMob(String mob, World world, int x, int z) {
-        return spawnMob(mob, world, world.getHighestBlockAt(x, z).getLocation());
+    public boolean spawnMob(String mob, World world, int x, int z, boolean showMessage) {
+        return spawnMob(mob, world, world.getHighestBlockAt(x, z).getLocation(), showMessage);
     }
 
-    public boolean spawnMob(String mob, World world, Location loc) {
+    public boolean spawnMob(String mob, World world, Location loc, boolean showMessage) {
         switch (mob) {
             case "asterios":
                 spawnAsterios(world, loc);
+                if (showMessage) {
+                    Bukkit.broadcastMessage("§4Asterios §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                }
                 return true;
 
             case "lucifer":
                 spawnLucifer(world, loc);
+                if (showMessage) {
+                    Bukkit.broadcastMessage("§4Lucifer §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                }
                 return true;
             
             case "neith":
                 spawnNeith(world, loc);
+                if (showMessage) {
+                    Bukkit.broadcastMessage("§4Neith §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                }
                 return true;
             
             case "seliph":
                 spawnSeliph(world, loc);
+                if (showMessage) {
+                    Bukkit.broadcastMessage("§4Seliph §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                }
                 return true;
             
             case "tsuchigumo":
                 spawnTsuchigumo(world, loc);
+                if (showMessage) {
+                    Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                }
                 return true;
             
             default:
@@ -131,11 +146,9 @@ public class MobHandler {
             lucifer.setRemoveWhenFarAway(false);
 
             mobs.put("lucifer-" + getKeysMatching(pLucifer).toString(), lucifer);
-
-            Bukkit.broadcastMessage("§4Lucifer §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
         }
         else {
-            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("lucifer", loc));            
+            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("lucifer", loc));
         }
     }
 
@@ -156,8 +169,6 @@ public class MobHandler {
             asterios.setRemoveWhenFarAway(false);
 
             mobs.put("asterios-" + getKeysMatching(pAsterios).toString(), asterios);
-
-            Bukkit.broadcastMessage("§4Asterios §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("asterios", loc));
@@ -192,8 +203,6 @@ public class MobHandler {
             seliph.setRemoveWhenFarAway(false);
 
             mobs.put("seliph-" + getKeysMatching(pSeliph).toString(), seliph);
-
-            Bukkit.broadcastMessage("§4Seliph §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("seliph", loc));
@@ -225,8 +234,6 @@ public class MobHandler {
             neith.setRemoveWhenFarAway(false);
 
             mobs.put("neith-" + getKeysMatching(pNeith).toString(), neith);
-
-            Bukkit.broadcastMessage("§4Neith §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("neith", loc));
@@ -252,8 +259,6 @@ public class MobHandler {
             tsuchigumo.setRemoveWhenFarAway(false);
 
             mobs.put("tsuchigumo-" + getKeysMatching(pTsuchigumo).toString(), tsuchigumo);
-
-            Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("tsuchigumo", loc));

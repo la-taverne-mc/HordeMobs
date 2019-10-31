@@ -106,7 +106,7 @@ public class Commands implements TabExecutor {
                             return true;
                         }
                         else {
-                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), player.getLocation());
+                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), player.getLocation(), true);
                             return true;
                         }
                     
@@ -128,12 +128,12 @@ public class Commands implements TabExecutor {
                         else if (args[1].equalsIgnoreCase("all")) {
                             World world = player.getWorld();
                             for (String mob : mobsList) {
-                                mobHandler.spawnMob(mob, world);
+                                mobHandler.spawnMob(mob, world, true);
                             }
                             return true;
                         }
                         else {
-                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld());
+                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), true);
                             return true;
                         }
                     

@@ -23,7 +23,7 @@ public class ChunkEventListener implements Listener {
         if (mobHandler.mobsToSpawn.containsKey(chunkCoordinates)) {
             Entry<String, Location> mobToSpawn = mobHandler.mobsToSpawn.get(chunkCoordinates);
             mobHandler.mobsToSpawn.remove(chunkCoordinates);
-            mobHandler.spawnMob(mobToSpawn.getKey(), mobToSpawn.getValue().getWorld(), mobToSpawn.getValue());
+            mobHandler.spawnMob(mobToSpawn.getKey(), mobToSpawn.getValue().getWorld(), mobToSpawn.getValue(), false);
         }
     }
 }
