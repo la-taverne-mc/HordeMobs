@@ -8,7 +8,7 @@ public class Main extends JavaPlugin {
         MobHandler mobHandler = new MobHandler();
         getCommand("hordemobs").setExecutor(new Commands(mobHandler));
 
-        getServer().getPluginManager().registerEvents(new ChunkEventListener(mobHandler), this);
+        getServer().getPluginManager().registerEvents(new EventListener(mobHandler), this);
         
         System.out.println("HordeMobs has been successfully enabled");
     }

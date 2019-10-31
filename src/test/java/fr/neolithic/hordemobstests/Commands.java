@@ -62,7 +62,7 @@ public class Commands implements TabExecutor {
 
                     case "killall":
                         int killCount = 0;
-                        for (LivingEntity mob : mobHandler.mobs.values()) {
+                        for (LivingEntity mob : mobHandler.mobs) {
                             mob.remove();
                             killCount++;
                         }

@@ -1,11 +1,11 @@
 package fr.neolithic.hordemobstests;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
-import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -24,42 +24,18 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class MobHandler {
-    public HashMap<String, LivingEntity> mobs;
+    public ArrayList<LivingEntity> mobs;
 
     public HashMap<Entry<Integer, Integer>, Entry<String, Location>> mobsToSpawn;
     
     private Random r;
 
-    private Pattern pLucifer;
-    private Pattern pAsterios;
-    private Pattern pSeliph;
-    private Pattern pNeith;
-    private Pattern pTsuchigumo;
-
     public MobHandler() {
-        mobs = new HashMap<String, LivingEntity>();
+        mobs = new ArrayList<LivingEntity>();
 
         mobsToSpawn = new HashMap<Entry<Integer, Integer>, Entry<String, Location>>();
 
         r = new Random();
-
-        pLucifer = Pattern.compile("lucifer-[0-9]+");
-        pAsterios = Pattern.compile("asterios-[0-9]+");
-        pSeliph = Pattern.compile("seliph-[0-9]+");
-        pNeith = Pattern.compile("neith-[0-9]+");
-        pTsuchigumo = Pattern.compile("tsuchigumo-[0-9]+");
-    }
-
-    private Integer getKeysMatching(Pattern pattern) {
-        Integer keysMatching = 0;
-
-        for (String key : mobs.keySet()) {
-            if (pattern.matcher(key).matches()) {
-                keysMatching++;
-            }
-        }
-
-        return keysMatching;
     }
 
     public boolean spawnMob(String mob, World world, boolean showMessage) {
@@ -144,8 +120,9 @@ public class MobHandler {
             lucifer.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
             lucifer.setHealth(500);
             lucifer.setRemoveWhenFarAway(false);
+            lucifer.addScoreboardTag("HordeMobs");
 
-            mobs.put("lucifer-" + getKeysMatching(pLucifer).toString(), lucifer);
+            mobs.add(lucifer);
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("lucifer", loc));
@@ -167,8 +144,9 @@ public class MobHandler {
             asterios.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
             asterios.setHealth(500);
             asterios.setRemoveWhenFarAway(false);
+            asterios.addScoreboardTag("HordeMobs");
 
-            mobs.put("asterios-" + getKeysMatching(pAsterios).toString(), asterios);
+            mobs.add(asterios);
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("asterios", loc));
@@ -201,8 +179,9 @@ public class MobHandler {
             seliph.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
             seliph.setHealth(500);
             seliph.setRemoveWhenFarAway(false);
+            seliph.addScoreboardTag("HordeMobs");
 
-            mobs.put("seliph-" + getKeysMatching(pSeliph).toString(), seliph);
+            mobs.add(seliph);
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("seliph", loc));
@@ -232,8 +211,9 @@ public class MobHandler {
             neith.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
             neith.setHealth(500);
             neith.setRemoveWhenFarAway(false);
+            neith.addScoreboardTag("HordeMobs");
 
-            mobs.put("neith-" + getKeysMatching(pNeith).toString(), neith);
+            mobs.add(neith);
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("neith", loc));
@@ -257,8 +237,9 @@ public class MobHandler {
             tsuchigumo.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
             tsuchigumo.setHealth(500);
             tsuchigumo.setRemoveWhenFarAway(false);
+            tsuchigumo.addScoreboardTag("HordeMobs");
 
-            mobs.put("tsuchigumo-" + getKeysMatching(pTsuchigumo).toString(), tsuchigumo);
+            mobs.add(tsuchigumo);
         }
         else {
             mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("tsuchigumo", loc));
