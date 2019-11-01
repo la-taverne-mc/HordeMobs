@@ -24,6 +24,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class MobHandler {
+    public ArrayList<String> mobList;
+
     public ArrayList<LivingEntity> mobs;
 
     public HashMap<Entry<Integer, Integer>, Entry<String, Location>> mobsToSpawn;
@@ -31,6 +33,14 @@ public class MobHandler {
     private Random r;
 
     public MobHandler() {
+        mobList = new ArrayList<String>();
+
+        mobList.add("asterios");
+        mobList.add("lucifer");
+        mobList.add("neith");
+        mobList.add("seliph");
+        mobList.add("tsuchigumo");
+
         mobs = new ArrayList<LivingEntity>();
 
         mobsToSpawn = new HashMap<Entry<Integer, Integer>, Entry<String, Location>>();

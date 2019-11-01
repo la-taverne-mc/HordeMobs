@@ -34,7 +34,6 @@ public class Commands implements TabExecutor {
         argumentsList.add("list");
         argumentsList.add("spawn");
         argumentsList.add("spawnhere");
-        argumentsList.add("test");
     }
 
     @Override
@@ -42,12 +41,7 @@ public class Commands implements TabExecutor {
         if (command.getName().equalsIgnoreCase("hordemobs") && sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length == 1) {
-                switch (args[0].toLowerCase()) {
-                    case "test":
-                        player.sendMessage(mobHandler.mobsToSpawn.toString());
-                        return true;
-
-                    case "help":
+                switch (args[0].toLowerCase()) {case "help":
                         showHelp(player);
                         return true;
 
