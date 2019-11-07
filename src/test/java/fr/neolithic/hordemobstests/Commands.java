@@ -1,39 +1,43 @@
 package fr.neolithic.hordemobstests;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.google.common.collect.Lists;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+
+import fr.neolithic.hordemobstests.MobHandler.CustomMob;
 
 public class Commands implements TabExecutor {
     private MobHandler mobHandler;
 
-    private List<String> mobsList;
-    private List<String> argumentsList;
+    private List<String> mobList;
+    private List<String> functionList;
 
+    /**
+     * Construit une instance de Commands
+     */
     public Commands(MobHandler mobHandler) {
         this.mobHandler = mobHandler;
 
-        mobsList = Lists.newArrayList();
-        mobsList.add("asterios");
-        mobsList.add("lucifer");
-        mobsList.add("neith");
-        mobsList.add("seliph");
-        mobsList.add("tsuchigumo");
+        mobList = Lists.newArrayList();
+        for (CustomMob cm : CustomMob.values()) {
+            mobList.add(cm.name().toLowerCase());
+        }
 
-        argumentsList = Lists.newArrayList();
-        argumentsList.add("help");
-        argumentsList.add("killall");
-        argumentsList.add("list");
-        argumentsList.add("spawn");
-        argumentsList.add("spawnhere");
+        functionList = Lists.newArrayList();
+        functionList.add("help");
+        functionList.add("killall");
+        functionList.add("list");
+        functionList.add("spawn");
+        functionList.add("spawnhere");
     }
 
     @Override
@@ -41,23 +45,27 @@ public class Commands implements TabExecutor {
         if (command.getName().equalsIgnoreCase("hordemobs") && sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length == 1) {
-                switch (args[0].toLowerCase()) {case "help":
+                switch (args[0].toLowerCase()) {
+                    // Affiche le message d'aide
+                    case "help":
                         showHelp(player);
                         return true;
 
+                    // Affiche la liste les mobs ajouté par ce plugin
                     case "list":
                         String msg = "§3Summonable mobs added by this plugin : ";
-                        for (String mob : mobsList) {
+                        for (String mob : mobList) {
                             msg += "§9" + mob + "§3, ";
                         }
                         msg = msg.substring(0, msg.length() - 4);
                         player.sendMessage(msg);
                         return true;
 
+                    // Supprime tout les mobs ayant spawn et vide la liste des mobs à faire spawn
                     case "killall":
                         int killCount = 0;
-                        for (LivingEntity mob : mobHandler.mobs) {
-                            mob.remove();
+                        for (UUID mob : mobHandler.mobs) {
+                            Bukkit.getEntity(mob).remove();
                             killCount++;
                         }
                         mobHandler.mobs.clear();
@@ -68,6 +76,7 @@ public class Commands implements TabExecutor {
                         player.sendMessage("§9" + String.valueOf(killCount) + " §3mobs where killed");
                         return true;
                     
+                    // Affiche un message d'erreur
                     case "spawn":
                     case "spawnhere":
                         player.sendMessage("§cThe mob argument is missing");
@@ -82,17 +91,19 @@ public class Commands implements TabExecutor {
 
             if (args.length == 2) {
                 switch (args[0].toLowerCase()) {
+                    // Affiche un message d'erreur
                     case "help":
                     case "list":
                     case "killall":
                         player.sendMessage("§cToo much arguments for \"/hordemobs " + args[0] + "\"");
                         return true;
                         
+                    // Verifie si le mob existe et tente de le faire spawn le mob aux coordonnées du joueur
                     case "spawnhere":
-                        if (!mobsList.contains(args[1].toLowerCase())) {
+                        if (!mobList.contains(args[1].toLowerCase())) {
                             player.sendMessage("This mob doesn't exist");
                             String msg = "§3Here is a list of existing mobs added by this plugin : ";
-                            for (String mob : mobsList) {
+                            for (String mob : mobList) {
                                 msg += "§9" + mob + "§3, ";
                             }
                             msg = msg.substring(0, msg.length() - 4);
@@ -100,15 +111,16 @@ public class Commands implements TabExecutor {
                             return true;
                         }
                         else {
-                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), player.getLocation(), true);
+                            mobHandler.spawnMob(CustomMob.valueOf(args[1].toUpperCase()), player.getLocation(), true);
                             return true;
                         }
                     
+                    // Verifie si le mob existe et tente de le faire spawn aléatoirement dans le monde
                     case "spawn":
-                        if (!mobsList.contains(args[1].toLowerCase()) && !args[1].equalsIgnoreCase("all")) {
+                        if (!mobList.contains(args[1].toLowerCase()) && !args[1].equalsIgnoreCase("all")) {
                             player.sendMessage("§cThis mob doesn't exist");
                             String msg = "§3Here is a list of existing mobs added by this plugin : ";
-                            for (String mob : mobsList) {
+                            for (String mob : mobList) {
                                 msg += "§9" + mob + "§3, ";
                             }
                             msg = msg.substring(0, msg.length() - 4);
@@ -121,13 +133,13 @@ public class Commands implements TabExecutor {
                         }
                         else if (args[1].equalsIgnoreCase("all")) {
                             World world = player.getWorld();
-                            for (String mob : mobsList) {
+                            for (CustomMob mob : CustomMob.values()) {
                                 mobHandler.spawnMob(mob, world, true);
                             }
                             return true;
                         }
                         else {
-                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), true);
+                            mobHandler.spawnMob(CustomMob.valueOf(args[1].toUpperCase()), player.getWorld(), true);
                             return true;
                         }
                     
@@ -144,6 +156,11 @@ public class Commands implements TabExecutor {
         return false;
     }
 
+    /**
+     * Génère la liste des arguments possible grâce à la liste des fonctions functionList et à la liste des mobs mobList
+     * 
+     * @return La liste des arguments possible ou null si aucun n'a été trouvé
+     */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (command.getName().equalsIgnoreCase("hordemobs")) {
@@ -151,7 +168,7 @@ public class Commands implements TabExecutor {
 
             switch (args.length) {
                 case 1:
-                    for (String argument : argumentsList) {
+                    for (String argument : functionList) {
                         if (argument.toLowerCase().startsWith(args[0].toLowerCase())) {
                             correspondingArgs.add(argument);
                         }
@@ -161,7 +178,7 @@ public class Commands implements TabExecutor {
                 
                 case 2:
                     if (args[0].equalsIgnoreCase("spawn") || args[0].equalsIgnoreCase("spawnhere")) {
-                        for (String mob : mobsList) {
+                        for (String mob : mobList) {
                             if (mob.toLowerCase().startsWith(args[1].toLowerCase())) {
                                 correspondingArgs.add(mob);
                             }
@@ -184,6 +201,11 @@ public class Commands implements TabExecutor {
         return null;
     }
 
+    /**
+     * Envoie le message d'aide l'exécutant de la commande
+     *
+     * @param sender L'exécutant à qui envoyer le message d'aide 
+     */
     private void showHelp(CommandSender sender) {
         sender.sendMessage("§e=====================§6Help§e=====================");
         sender.sendMessage("§9/hordemobs help : §3shows all commands");

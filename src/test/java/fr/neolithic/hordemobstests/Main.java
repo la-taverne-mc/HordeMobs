@@ -11,6 +11,7 @@ public class Main extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new EventListener(mobHandler), this);
 
+        // Crée une instance de MobSpawnScheduler et l'exécute toutes les 30min
         MobSpawnScheduler mobSpawnScheduler = new MobSpawnScheduler(mobHandler);
         mobSpawnScheduler.runTaskTimer(this, 36000, 36000);
         

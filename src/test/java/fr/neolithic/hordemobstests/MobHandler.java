@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -13,7 +14,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Pillager;
 import org.bukkit.entity.Ravager;
 import org.bukkit.entity.Skeleton;
@@ -24,31 +24,44 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class MobHandler {
-    public ArrayList<String> mobList;
+    // Liste des mobs ajoutés par le plugin
+    public enum CustomMob {
+        ASTERIOS,
+        LUCIFER,
+        NEITH,
+        SELIPH,
+        TSUCHIGUMO;
+    }
+    
+    // Liste des mobs ayant déjà spawn
+    public ArrayList<UUID> mobs;
 
-    public ArrayList<LivingEntity> mobs;
-
-    public HashMap<Entry<Integer, Integer>, Entry<String, Location>> mobsToSpawn;
+    // Liste des mobs à faire spawn quand leur chunk attribué sera chargé
+    public HashMap<Entry<Integer, Integer>, Entry<CustomMob, Location>> mobsToSpawn;
     
     private Random r;
 
+    /**
+     * Construit une nouvelle instance de MobHandler
+     */
     public MobHandler() {
-        mobList = new ArrayList<String>();
-
-        mobList.add("asterios");
-        mobList.add("lucifer");
-        mobList.add("neith");
-        mobList.add("seliph");
-        mobList.add("tsuchigumo");
-
-        mobs = new ArrayList<LivingEntity>();
-
-        mobsToSpawn = new HashMap<Entry<Integer, Integer>, Entry<String, Location>>();
-
+        mobs = new ArrayList<UUID>();
+        mobsToSpawn = new HashMap<Entry<Integer, Integer>, Entry<CustomMob, Location>>();
         r = new Random();
     }
 
-    public boolean spawnMob(String mob, World world, boolean showMessage) {
+    /**
+     * Fait spawn le mob choisi dans le monde sélectionné à des coordonnées
+     * aléatoires dans la bordure du monde
+     *
+     * @param mob         Le mob à faire spawn
+     * @param world       Le monde dans lequel le faire spawn
+     * @param showMessage Si un message doit être afficher pour dire où le mob
+     *                    choisi a spawn
+     *
+     * @return Retourne true si le mob a spawn, sinon false
+     */
+    public boolean spawnMob(CustomMob mob, World world, boolean showMessage) {
         int worldSize = Double.valueOf(world.getWorldBorder().getSize()).intValue();
         int x = r.nextInt(worldSize) - worldSize / 2 + world.getWorldBorder().getCenter().getBlockX();
         int z = r.nextInt(worldSize) - worldSize / 2 + world.getWorldBorder().getCenter().getBlockZ();
@@ -56,44 +69,67 @@ public class MobHandler {
         return spawnMob(mob, world, x, z, showMessage);
     }
 
-    public boolean spawnMob(String mob, World world, int x, int z, boolean showMessage) {
-        return spawnMob(mob, world, world.getHighestBlockAt(x, z).getLocation(), showMessage);
+    /**
+     * Fait spawn le mob choisi dans le monde sélectionné sur le bloc le plus haut
+     * aux coordonnées X / Z
+     *
+     * @param mob         Le mob à faire spawn
+     * @param world       Le monde dans lequel le faire spawn
+     * @param x           La coordonnée X à laquelle faire spawn le mob
+     * @param z           La coordonnée Z à laquelle faire spawn le mob
+     * @param showMessage Si un message doit être affiché pour dire où le mob choisi
+     *                    a spawn
+     *
+     * @return Retourne true si le mob a spawn, sinon false
+     */
+    public boolean spawnMob(CustomMob mob, World world, int x, int z, boolean showMessage) {
+        return spawnMob(mob, world.getHighestBlockAt(x, z).getLocation(), showMessage);
     }
 
-    public boolean spawnMob(String mob, World world, Location loc, boolean showMessage) {
+    /**
+     * Fait spawn le mob choisi aux coordonnées indiqués
+     *
+     * @param mob         Le mob à faire spawn
+     * @param loc         Les coordonnées auxquelles faire spawn le mob
+     * @param showMessage Si un message doit être affiché pour dire où le mob choisi
+     *                    a spawn
+     *
+     * @return Retourne true si le mob a spawn, sinon false
+     */
+    public boolean spawnMob(CustomMob mob, Location loc, boolean showMessage) {
         switch (mob) {
-            case "asterios":
-                spawnAsterios(world, loc);
+            case ASTERIOS:
+                spawnAsterios(loc);
                 if (showMessage) {
-                    Bukkit.broadcastMessage("§4Asterios §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                    Bukkit.broadcastMessage("§4Asterios §eest apparu dans " + loc.getWorld().getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
                 }
                 return true;
 
-            case "lucifer":
-                spawnLucifer(world, loc);
+            case LUCIFER:
+                spawnLucifer(loc);
                 if (showMessage) {
-                    Bukkit.broadcastMessage("§4Lucifer §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                    Bukkit.broadcastMessage("§4Lucifer §eest apparu dans " + loc.getWorld().getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
                 }
                 return true;
             
-            case "neith":
-                spawnNeith(world, loc);
+            case NEITH:
+                spawnNeith(loc);
                 if (showMessage) {
-                    Bukkit.broadcastMessage("§4Neith §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                    Bukkit.broadcastMessage("§4Neith §eest apparu dans " + loc.getWorld().getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
                 }
                 return true;
             
-            case "seliph":
-                spawnSeliph(world, loc);
+            case SELIPH:
+                spawnSeliph(loc);
                 if (showMessage) {
-                    Bukkit.broadcastMessage("§4Seliph §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                    Bukkit.broadcastMessage("§4Seliph §eest apparu dans " + loc.getWorld().getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
                 }
                 return true;
             
-            case "tsuchigumo":
-                spawnTsuchigumo(world, loc);
+            case TSUCHIGUMO:
+                spawnTsuchigumo(loc);
                 if (showMessage) {
-                    Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu dans " + world.getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
+                    Bukkit.broadcastMessage("§4Tsuchigumo §eest apparu dans " + loc.getWorld().getName() + " en x: " + loc.getBlockX() + " z: " + loc.getBlockZ());
                 }
                 return true;
             
@@ -102,9 +138,14 @@ public class MobHandler {
         }
     }
 
-    private void spawnLucifer(World world, Location loc) {
-        if (world.isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
-            Skeleton lucifer = (Skeleton) world.spawnEntity(loc, EntityType.SKELETON);
+    /**
+     * Fait apparaitre Lucifer aux coordonnées indiquées
+     *
+     * @param loc Les coordonnées auxquelles faire spawn Lucifer
+     */
+    private void spawnLucifer(Location loc) {
+        if (loc.getWorld().isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
+            Skeleton lucifer = (Skeleton) loc.getWorld().spawnEntity(loc, EntityType.SKELETON);
             lucifer.setCustomName("§4Lucifer");
             lucifer.setCustomNameVisible(true);
             ItemStack[] armor = {
@@ -132,16 +173,21 @@ public class MobHandler {
             lucifer.setRemoveWhenFarAway(false);
             lucifer.addScoreboardTag("HordeMobs");
 
-            mobs.add(lucifer);
+            mobs.add(lucifer.getUniqueId());
         }
         else {
-            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("lucifer", loc));
+            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<CustomMob, Location>(CustomMob.LUCIFER, loc));
         }
     }
 
-    private void spawnAsterios(World world, Location loc) {
-        if (world.isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
-            Ravager asterios = (Ravager) world.spawnEntity(loc, EntityType.RAVAGER);
+    /**
+     * Fait apparaitre Asterios aux coordonnées indiquées
+     *
+     * @param loc Les coordonnées auxquelles faire spawn Asterios
+     */
+    private void spawnAsterios(Location loc) {
+        if (loc.getWorld().isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
+            Ravager asterios = (Ravager) loc.getWorld().spawnEntity(loc, EntityType.RAVAGER);
             asterios.setCustomName("§4Asterios");
             asterios.setCustomNameVisible(true);
             asterios.addPotionEffects(Arrays.asList(
@@ -156,16 +202,21 @@ public class MobHandler {
             asterios.setRemoveWhenFarAway(false);
             asterios.addScoreboardTag("HordeMobs");
 
-            mobs.add(asterios);
+            mobs.add(asterios.getUniqueId());
         }
         else {
-            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("asterios", loc));
+            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<CustomMob, Location>(CustomMob.ASTERIOS, loc));
         }
     }
 
-    private void spawnSeliph(World world, Location loc) {
-        if (world.isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
-            Vindicator seliph = (Vindicator) world.spawnEntity(loc, EntityType.VINDICATOR);
+    /**
+     * Fait apparaitre Seliph aux coordonnées indiquées
+     *
+     * @param loc Les coordonnées auxquelles faire spawn Seliph
+     */
+    private void spawnSeliph(Location loc) {
+        if (loc.getWorld().isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
+            Vindicator seliph = (Vindicator) loc.getWorld().spawnEntity(loc, EntityType.VINDICATOR);
             seliph.setCustomName("§4Seliph");
             seliph.setCustomNameVisible(true);
             ItemStack[] armor = {
@@ -191,16 +242,21 @@ public class MobHandler {
             seliph.setRemoveWhenFarAway(false);
             seliph.addScoreboardTag("HordeMobs");
 
-            mobs.add(seliph);
+            mobs.add(seliph.getUniqueId());
         }
         else {
-            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("seliph", loc));
+            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<CustomMob, Location>(CustomMob.SELIPH, loc));
         }
     }
 
-    private void spawnNeith(World world, Location loc) {
-        if (world.isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
-            Pillager neith = (Pillager) world.spawnEntity(loc, EntityType.PILLAGER);
+    /**
+     * Fait apparaitre Neith aux coordonnées indiquées
+     *
+     * @param loc Les coordonnées auxquelles faire spawn Neith
+     */
+    private void spawnNeith(Location loc) {
+        if (loc.getWorld().isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
+            Pillager neith = (Pillager) loc.getWorld().spawnEntity(loc, EntityType.PILLAGER);
             neith.setCustomName("§4Neith");
             neith.setCustomNameVisible(true);
             ItemStack[] armor = {
@@ -223,16 +279,21 @@ public class MobHandler {
             neith.setRemoveWhenFarAway(false);
             neith.addScoreboardTag("HordeMobs");
 
-            mobs.add(neith);
+            mobs.add(neith.getUniqueId());
         }
         else {
-            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("neith", loc));
+            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<CustomMob, Location>(CustomMob.NEITH, loc));
         }
     }
 
-    private void spawnTsuchigumo(World world, Location loc) {
-        if (world.isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
-            Spider tsuchigumo = (Spider) world.spawnEntity(loc, EntityType.SPIDER);
+    /**
+     * Fait apparaitre Tsuchigumo aux coordonnées indiquées
+     *
+     * @param loc Les coordonnées auxquelles faire spawn Tsuchigumo
+     */
+    private void spawnTsuchigumo(Location loc) {
+        if (loc.getWorld().isChunkLoaded(loc.getBlockX() / 16, loc.getBlockZ() / 16)) {
+            Spider tsuchigumo = (Spider) loc.getWorld().spawnEntity(loc, EntityType.SPIDER);
             tsuchigumo.setCustomName("§4Tsuchigumo");
             tsuchigumo.setCustomNameVisible(true);
             tsuchigumo.addPotionEffects(Arrays.asList(
@@ -249,10 +310,10 @@ public class MobHandler {
             tsuchigumo.setRemoveWhenFarAway(false);
             tsuchigumo.addScoreboardTag("HordeMobs");
 
-            mobs.add(tsuchigumo);
+            mobs.add(tsuchigumo.getUniqueId());
         }
         else {
-            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<String, Location>("tsuchigumo", loc));
+            mobsToSpawn.put(new SimpleEntry<Integer, Integer>(loc.getBlockX() / 16, loc.getBlockZ() / 16), new SimpleEntry<CustomMob, Location>(CustomMob.TSUCHIGUMO, loc));
         }
     }
 }
