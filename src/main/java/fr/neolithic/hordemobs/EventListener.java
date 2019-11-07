@@ -1,4 +1,4 @@
-package fr.neolithic.hordemobstests;
+package fr.neolithic.hordemobs;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Map.Entry;

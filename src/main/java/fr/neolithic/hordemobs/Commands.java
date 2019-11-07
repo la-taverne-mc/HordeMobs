@@ -34,7 +34,6 @@ public class Commands implements TabExecutor {
         argumentsList.add("list");
         argumentsList.add("spawn");
         argumentsList.add("spawnhere");
-        argumentsList.add("test");
     }
 
     @Override
@@ -42,12 +41,7 @@ public class Commands implements TabExecutor {
         if (command.getName().equalsIgnoreCase("hordemobs") && sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length == 1) {
-                switch (args[0].toLowerCase()) {
-                    case "test":
-                        player.sendMessage(mobHandler.mobsToSpawn.toString());
-                        return true;
-
-                    case "help":
+                switch (args[0].toLowerCase()) {case "help":
                         showHelp(player);
                         return true;
 
@@ -62,7 +56,7 @@ public class Commands implements TabExecutor {
 
                     case "killall":
                         int killCount = 0;
-                        for (LivingEntity mob : mobHandler.mobs.values()) {
+                        for (LivingEntity mob : mobHandler.mobs) {
                             mob.remove();
                             killCount++;
                         }
@@ -106,7 +100,7 @@ public class Commands implements TabExecutor {
                             return true;
                         }
                         else {
-                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), player.getLocation());
+                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), player.getLocation(), true);
                             return true;
                         }
                     
@@ -128,12 +122,12 @@ public class Commands implements TabExecutor {
                         else if (args[1].equalsIgnoreCase("all")) {
                             World world = player.getWorld();
                             for (String mob : mobsList) {
-                                mobHandler.spawnMob(mob, world);
+                                mobHandler.spawnMob(mob, world, true);
                             }
                             return true;
                         }
                         else {
-                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld());
+                            mobHandler.spawnMob(args[1].toLowerCase(), player.getWorld(), true);
                             return true;
                         }
                     
